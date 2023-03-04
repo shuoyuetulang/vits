@@ -5,7 +5,7 @@ from text.symbols import symbols
 import torch
 import commons
 
-export_path = "onnx_export"
+export_path = "E:\galgame\MoeSS-CPU\MoeSS-CPU\Mods"
 
 def get_text(text, hps):
     text_norm = text_to_sequence(text, hps.data.text_cleaners)
@@ -14,7 +14,7 @@ def get_text(text, hps):
     text_norm = torch.LongTensor(text_norm)
     return text_norm
 
-hps = utils.get_hparams_from_file("config.json")
+hps = utils.get_hparams_from_file("E:\galgame\MoeSS-CPU\MoeSS-CPU\Mods")
 
 net_g = SynthesizerTrn(
     len(symbols),
@@ -23,7 +23,7 @@ net_g = SynthesizerTrn(
     n_speakers=hps.data.n_speakers,
     **hps.model)
 _ = net_g.eval()
-_ = utils.load_checkpoint("G_76000.pth", net_g)
+_ = utils.load_checkpoint("E:\galgame\MoeSS-CPU\MoeSS-CPU\Mods", net_g)
 
 stn_tst = get_text("onnx test.", hps)
 with torch.no_grad():
